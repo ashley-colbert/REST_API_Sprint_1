@@ -1,4 +1,4 @@
-package com.keyin.airportInfo;
+package com.keyin.aircraftInfo;
 
 public class Aircraft {
     private String id;
