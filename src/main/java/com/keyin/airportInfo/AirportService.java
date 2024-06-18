@@ -12,6 +12,10 @@ import java.util.Map;
 public class AirportService {
     private Map<Integer, Airports> airportMap = new HashMap<Integer, Airports>();
 
+    public void setAirportMap(Map<Integer, Airports> airportMap) {
+        this.airportMap = airportMap;
+    }
+
     public Airports getAirport(Integer index) {
         return airportMap.get(index);
     }
