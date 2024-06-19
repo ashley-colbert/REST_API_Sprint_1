@@ -1,4 +1,4 @@
-package com.keyin.airportInfo;
+package com.keyin.citiesInfo;
 
 public class Cities {
     private String id;

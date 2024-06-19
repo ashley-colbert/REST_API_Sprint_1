@@ -11,7 +11,7 @@ public class AircraftController {
     @Autowired
     private AircraftService aircraftService;
 
-    @GetMapping("Search-sircraft")
+    @GetMapping("Search-aircraft")
     public List<Aircraft> searchAircraft(@RequestParam(value = "id", required = false) String id) {
         return aircraftService.findAircraftById(id);
     }
