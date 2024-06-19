@@ -1,4 +1,4 @@
-package com.keyin.airportInfo;
+package com.keyin.passengerInfo;
 
 public class Passengers {
     private String id;
