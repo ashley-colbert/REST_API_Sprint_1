@@ -1,7 +1,9 @@
 package com.keyin.citiesInfo;
 
+import com.keyin.airportInfo.AirportService;
+import com.keyin.airportInfo.Airports;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,13 +12,22 @@ import java.util.Map;
 
 @Service
 public class CitiesService {
-    private Map<Integer, Cities> citiesMap = new HashMap<Integer, Cities>();
 
+    private Map<Integer, Cities> citiesMap = new HashMap<Integer, Cities>();
+    @Autowired
+    private AirportService airportService;
     public Cities getCity(Integer index) {
         return citiesMap.get(index);
     }
 
-    public Cities createCity(Cities newCity) {
+    public Cities createCity(Cities newCity, String airportCode) {
+        if (newCity.getAirports() == null) {
+            newCity.setAirports(new ArrayList<>());
+        }
+        List<Airports> airportsFound = airportService.findAirportByCode(airportCode);
+
+        newCity.getAirports().addAll(airportsFound);
+
         citiesMap.put(citiesMap.size() +1, newCity);
         return newCity;
     }
