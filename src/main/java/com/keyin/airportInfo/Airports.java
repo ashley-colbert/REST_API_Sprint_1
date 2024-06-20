@@ -1,9 +1,12 @@
 package com.keyin.airportInfo;
+import com.keyin.citiesInfo.*;
 
 public class Airports {
     private String id;
     private String name;
     private String code;
+//    private Cities city;
+//    private String cityId;
 
     public String getId() {
         return id;
@@ -28,4 +31,6 @@ public class Airports {
     public void setCode(String code) {
         this.code = code;
     }
+
+
 }

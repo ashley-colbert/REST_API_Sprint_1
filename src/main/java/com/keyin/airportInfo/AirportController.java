@@ -14,8 +14,8 @@ public class AirportController {
     private AirportService airportService;
 
     @GetMapping("search_airports")
-    public List<Airports> searchAirports(@RequestParam(value = "id", required = false) String id, @RequestParam(value = "name", required = false) String name, @RequestParam(value = "code", required = false) String code) {
-        return airportService.findAirportByIdNameCode(id, name, code);
+    public List<Airports> searchAirports(@RequestParam(value = "code", required = false) String code) {
+        return airportService.findAirportByCode(code);
     }
 
     @GetMapping("airports")

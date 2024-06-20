@@ -1,5 +1,6 @@
 package com.keyin.airportInfo;
 
+import com.keyin.citiesInfo.Cities;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -11,10 +12,6 @@ import java.util.Map;
 @Service
 public class AirportService {
     private Map<Integer, Airports> airportMap = new HashMap<Integer, Airports>();
-
-    public void setAirportMap(Map<Integer, Airports> airportMap) {
-        this.airportMap = airportMap;
-    }
 
     public Airports getAirport(Integer index) {
         return airportMap.get(index);
@@ -44,17 +41,15 @@ public class AirportService {
         airportMap.remove(index);
     }
 
-    public List<Airports> findAirportByIdNameCode(String id, String name, String code) {
+    public List<Airports> findAirportByCode(String code) {
         List<Airports> airportsFound = new ArrayList<Airports>();
 
         for (Airports airports : airportMap.values()) {
-            if (airports.getId().equalsIgnoreCase(id) &&
-                airports.getName().equalsIgnoreCase(name) &&
-                airports.getCode().equalsIgnoreCase(code)) {
+            if (airports.getCode().equalsIgnoreCase(code)) {
                 airportsFound.add(airports);
             }
         }
-        return airportsFound;
-    }
+            return airportsFound;
+        }
 
 }

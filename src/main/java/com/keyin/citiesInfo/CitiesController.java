@@ -26,8 +26,8 @@ public class CitiesController {
     }
 
     @PostMapping("city")
-    public  Cities createCity(@RequestBody Cities newCity) {
-        return citiesService.createCity(newCity);
+    public  Cities createCity(@RequestBody Cities newCity, @RequestParam String airportCode) {
+        return citiesService.createCity(newCity, airportCode);
     }
 
     @PutMapping("city/{index}")
