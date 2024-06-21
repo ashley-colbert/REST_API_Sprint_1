@@ -2,6 +2,8 @@ package com.keyin.passengerInfo;
 
 import com.keyin.aircraftInfo.Aircraft;
 import com.keyin.aircraftInfo.AircraftService;
+import com.keyin.airportInfo.AirportService;
+import com.keyin.airportInfo.Airports;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -17,17 +19,25 @@ public class PassengerService {
     @Autowired
     private AircraftService aircraftService;
 
+    @Autowired
+    private AirportService airportService;
+
     public Passengers getPassenger(Integer index) {
         return passengerMap.get(index);
     }
 
-    public Passengers createPassenger(Passengers newPassenger, String aircraftId) {
+    public Passengers createPassenger(Passengers newPassenger, String aircraftId, String airportCode) {
         if (newPassenger.getAircraft() == null) {
             newPassenger.setAircraft(new ArrayList<>());
         }
         List<Aircraft> aircraftFound = aircraftService.findAircraftById(aircraftId);
-
         newPassenger.getAircraft().addAll(aircraftFound);
+
+        if(newPassenger.getAirports() == null) {
+            newPassenger.setAirports(new ArrayList<>());
+        }
+        List<Airports> airportFound = airportService.findAirportByCode(airportCode);
+        newPassenger.getAirports().addAll(airportFound);
 
         passengerMap.put(passengerMap.size() + 1, newPassenger);
         return newPassenger;
@@ -54,6 +64,15 @@ public class PassengerService {
         Passengers passengerToUpdate = passengerMap.get(index);
         List<Aircraft> aircraftList = aircraftService.findAircraftById(aircraftId);
         passengerToUpdate.getAircraft().addAll(aircraftList);
+
+        passengerMap.put(index, passengerToUpdate);
+        return passengerToUpdate;
+    }
+
+    public Passengers updatePassengerAirport(Integer index, String airportCode) {
+        Passengers passengerToUpdate = passengerMap.get(index);
+        List<Airports> airportsList = airportService.findAirportByCode(airportCode);
+        passengerToUpdate.getAirports().addAll(airportsList);
 
         passengerMap.put(index, passengerToUpdate);
         return passengerToUpdate;

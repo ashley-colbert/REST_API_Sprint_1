@@ -1,6 +1,7 @@
 package com.keyin.passengerInfo;
 
 import com.keyin.aircraftInfo.Aircraft;
+import com.keyin.airportInfo.Airports;
 
 import java.util.ArrayList;
 
@@ -10,6 +11,7 @@ public class Passengers {
     private String lastName;
     private String phoneNumber;
     private ArrayList<Aircraft> aircraft;
+    private ArrayList<Airports> airports;
 
     public Passengers(String id, String firstName, String lastName, String phoneNumber, ArrayList<Aircraft> aircraft) {
         this.id = id;
@@ -17,6 +19,7 @@ public class Passengers {
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.aircraft = aircraft;
+        this.airports = airports;
     }
 
     public String getId() {
@@ -57,5 +60,13 @@ public class Passengers {
 
     public void setAircraft(ArrayList<Aircraft> aircraft) {
         this.aircraft = aircraft;
+    }
+
+    public ArrayList<Airports> getAirports() {
+        return airports;
+    }
+
+    public void setAirports(ArrayList<Airports> airports) {
+        this.airports = airports;
     }
 }

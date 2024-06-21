@@ -27,8 +27,8 @@ public class PassengerController {
     }
 
     @PostMapping("passenger")
-    public Passengers createPassenger(@RequestBody Passengers newPassenger, @RequestParam(value = "aircraftId", required = false)String aircraftId) {
-        return passengerService.createPassenger(newPassenger, aircraftId);
+    public Passengers createPassenger(@RequestBody Passengers newPassenger, @RequestParam(value = "aircraftId", required = false)String aircraftId, @RequestParam(value = "airportCode", required = false) String airportCode) {
+        return passengerService.createPassenger(newPassenger, aircraftId, airportCode);
     }
 
     @PutMapping("passenger/{index}")
@@ -39,6 +39,11 @@ public class PassengerController {
     @PutMapping("passenger/aircraft/{index}")
     public Passengers updatePassengerAircraft(@PathVariable Integer index, @RequestParam(value = "aircraftId", required = false) String aircraftId) {
         return passengerService.updatePassengerAircraft(index, aircraftId);
+    }
+
+    @PutMapping("passenger/airport/{index}")
+    public Passengers updatePassengerAirport(@PathVariable Integer index, @RequestParam(value = "airportCode", required = false) String airportCode) {
+        return passengerService.updatePassengerAirport(index, airportCode);
     }
 
     @DeleteMapping("passenger/{index}")
