@@ -46,26 +46,16 @@ public class PassengerService {
         passengerToUpdate.setLastName(updatedPassenger.getLastName());
         passengerToUpdate.setPhoneNumber(updatedPassenger.getPhoneNumber());
 
-
         passengerMap.put(index, passengerToUpdate);
         return passengerToUpdate;
     }
 
     public Passengers updatePassengerAircraft(Integer index, String aircraftId) {
         Passengers passengerToUpdate = passengerMap.get(index);
+        List<Aircraft> aircraftList = aircraftService.findAircraftById(aircraftId);
+        passengerToUpdate.getAircraft().addAll(aircraftList);
 
-        if (passengerToUpdate == null) {
-            throw new IllegalArgumentException("Passenger not found with index: " + index);
-        }
-        if (aircraftId != null && !aircraftId.isEmpty()) {
-            List<Aircraft> aircraftList = aircraftService.findAircraftById(aircraftId);
-            if (aircraftList.isEmpty()) {
-                throw new IllegalArgumentException("Aircraft not found with ID: " + aircraftId);
-            }
-            passengerToUpdate.getAircraft().addAll(aircraftList);
-        }
         passengerMap.put(index, passengerToUpdate);
-
         return passengerToUpdate;
     }
 

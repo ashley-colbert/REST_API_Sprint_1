@@ -36,8 +36,8 @@ public class PassengerController {
         return passengerService.updatePassenger(index, updatedPassenger);
     }
 
-    @PutMapping("passengers/{index}")
-    public Passengers updatePassenger(@PathVariable Integer index, @RequestParam(value = "aircraftId", required = false) String aircraftId) {
+    @PutMapping("passenger/aircraft/{index}")
+    public Passengers updatePassengerAircraft(@PathVariable Integer index, @RequestParam(value = "aircraftId", required = false) String aircraftId) {
         return passengerService.updatePassengerAircraft(index, aircraftId);
     }
 

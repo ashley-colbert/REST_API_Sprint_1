@@ -26,13 +26,18 @@ public class CitiesController {
     }
 
     @PostMapping("city")
-    public  Cities createCity(@RequestBody Cities newCity, @RequestParam String airportCode) {
+    public  Cities createCity(@RequestBody Cities newCity, @RequestParam (value ="airportCode", required = false) String airportCode) {
         return citiesService.createCity(newCity, airportCode);
     }
 
     @PutMapping("city/{index}")
     public Cities updatedCity(@PathVariable Integer index, @RequestBody Cities updatedCity) {
         return citiesService.updateCity(index, updatedCity);
+    }
+
+    @PutMapping("city/airport/{index}")
+    public Cities updateCityAirports(@PathVariable Integer index, @RequestParam(value = "airportCode", required = false) String airportCode) {
+        return citiesService.updateCityAirports(index, airportCode);
     }
 
     @DeleteMapping
