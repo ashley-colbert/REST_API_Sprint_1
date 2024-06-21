@@ -1,5 +1,6 @@
 package com.keyin.citiesInfo;
 
+import com.keyin.aircraftInfo.Aircraft;
 import com.keyin.airportInfo.AirportService;
 import com.keyin.airportInfo.Airports;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,15 @@ public class CitiesService {
         cityToUpdate.setName((updatedCity.getName()));
         cityToUpdate.setState(updatedCity.getState());
         cityToUpdate.setPopulation(updatedCity.getPopulation());
+
+        citiesMap.put(index, cityToUpdate);
+        return cityToUpdate;
+    }
+
+    public Cities updateCityAirports(Integer index, String airportCode) {
+        Cities cityToUpdate = citiesMap.get(index);
+        List<Airports>airportList = airportService.findAirportByCode(airportCode);
+        cityToUpdate.getAirports().addAll(airportList);
 
         citiesMap.put(index, cityToUpdate);
         return cityToUpdate;
