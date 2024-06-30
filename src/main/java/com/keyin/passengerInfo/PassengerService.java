@@ -78,12 +78,9 @@ public class PassengerService {
         return passengerToUpdate;
     }
 
-
     public void deletePassenger(Integer index) {
         passengerMap.remove(index);
     }
-
-
 
     public List<Passengers> findPassengerById(String id) {
         List<Passengers> passengerFound = new ArrayList<Passengers>();
